@@ -1,34 +1,15 @@
 const express = require("express");
-const { Pool } = require("pg");
-
 const app = express();
-
-const pool = new Pool({
-  user: "andilemasela",
-  host: "localhost",
-  database: "mw_prox",
-  password: "Masela@2000",
-  port: 5432,
-});
+const pool = require("./config/config.js");
+const getAllClusters = require("./routes/clusters/clusters.js");
+const getAllInstances = require("./routes/instances/instances.js");
+const getAllNodes = require("./routes/nodes/nodes.js");
 
 app.get("/instances", (req, res) => {
-  pool
-    .query("SELECT * FROM Insantces")
-    .then((result) => res.json(result.rows))
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json(error);
-    });
+  getAllInstances(req, res);
 });
-
 app.get("/nodes", (req, res) => {
-  pool
-    .query("SELECT * FROM Nodes")
-    .then((result) => res.json(result.rows))
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json(error);
-    });
+  getAllNodes(req, res);
 });
 
 app.post("/cluster", (req, res) => {
@@ -45,14 +26,7 @@ app.post("/cluster", (req, res) => {
 });
 
 app.get("/cluster", (req, res) => {
-  const query = "SELECT * FROM Nodes";
-  pool
-    .query(query)
-    .then((result) => res.json(result.rows))
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json(error);
-    });
+  getAllClusters(req, res);
 });
 
 app.listen(3000, () => {

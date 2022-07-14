@@ -15,7 +15,7 @@ CREATE TABLE Nodes(
     status varchar(20)
 );
 
-CREATE TABLE Insantces(
+CREATE TABLE instances(
     id      SERIAL PRIMARY KEY,
     vmid    VARCHAR(20) NOT NULL,
     name    VARCHAR(20) NOT NULL,
@@ -30,6 +30,6 @@ CREATE TABLE Insantces(
 
 INSERT INTO Clusters (name,description,baseURL) VALUES('cluster name','cluster description','cluster url');
 INSERT INTO Nodes (clusterId,nodeId,status) VALUES('cluster name','nodeDemoId','status');
-INSERT INTO Insantces (vmid,name,node_id,intanceType,cores,memory,status,networks,storage) VALUES('vmid','instanceName','nodeDemoId','lxc',23,100,'demostatus','[{"size":"gbo"},{"size":"gb"}]','[{"size":"gbo"},{"size":"gb"}]');
+INSERT INTO Instances (vmid,name,node_id,intanceType,cores,memory,status,networks,storage) VALUES('vmid','instanceName','nodeDemoId','lxc',23,100,'demostatus','[{"size":"gbo"},{"size":"gb"}]','[{"size":"gbo"},{"size":"gb"}]');
 
 
